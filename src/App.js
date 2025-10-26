@@ -7,7 +7,6 @@ import { Console } from "@woowacourse/mission-utils";
 export class App {
   async run() {
     try {
-
       const carNames = await getCarNames();
       validateCarNames(carNames);
 
@@ -16,21 +15,19 @@ export class App {
 
       let cars = carNames.map((name) => ({ name, distance: 0 }));
 
-  
       printExecutionHeader();
 
-
       for (let i = 0; i < tryCount; i++) {
-        cars = playAllRounds(cars, 1); 
+        cars = playAllRounds(cars, 1);
         printRoundResult(cars);
       }
 
       printWinners(cars);
-
-      Console.close();
     } catch (error) {
       Console.print(error.message);
-      Console.close();
+      throw error;
     }
   }
 }
+
+export default App;
