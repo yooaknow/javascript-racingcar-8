@@ -15,6 +15,6 @@ export const printRoundResult = (cars) => {
 
 export const printWinners = (cars) => {
     const max = Math.max(...cars.map((c)=> c.distance));
-    const winners = car.filter((c)=> distance === max).map((c)=>c.name);
+    const winners = cars.filter((c)=> c.distance === max).map((c)=>c.name);
     Console.print(`최종 우승자: ${Winners.join(", ")}`);
 };
