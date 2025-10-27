@@ -1,28 +1,24 @@
 import { Random } from "@woowacourse/mission-utils";
 
-export const shouldMove = () => {
-    const randomNumber = Random.pickNumberInRange(0,9);
-    return randomNumber >= 4;
-}
+export const shouldMove = (rng = () => Random.pickNumberInRange(0, 9)) => {
+  return rng() >= 4;
+};
 
-export const playRound = (cars) => {
+export const playRound = (cars, rng = () => Random.pickNumberInRange(0, 9)) => {
   return cars.map((car) => {
-    const moved = shouldMove();
-    let newCar = { ...car };
-
-    if (moved) {
-      newCar = { ...car, distance: car.distance + 1 };
+    if (shouldMove(rng)) {
+      return { ...car, distance: car.distance + 1 };
     }
-   return newCar;
-
+    return { ...car };
   });
 };
 
 
-export const playAllRounds = (cars, tryCount) => {
-    let state = cars;
-    for (let i = 0; i< tryCount; i++) {
-        state = playRound(state);
-    }
-    return state
-}
+
+export const playAllRounds = (cars, tryCount, rng = () => Random.pickNumberInRange(0, 9)) => {
+  let state = cars;
+  for (let i = 0; i < tryCount; i += 1) {
+    state = playRound(state, rng);
+  }
+  return state;
+};
