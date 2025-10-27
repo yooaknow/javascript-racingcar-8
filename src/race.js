@@ -8,8 +8,13 @@ export const shouldMove = () => {
 export const playRound = (cars) => {
   return cars.map((car) => {
     const moved = shouldMove();
-    const newCar = { ...car, distance: car.distance + (moved ? 1 : 0) };
-    return newCar;
+    let newCar = { ...car };
+
+    if (moved) {
+      newCar = { ...car, distance: car.distance + 1 };
+    }
+   return newCar;
+
   });
 };
 
