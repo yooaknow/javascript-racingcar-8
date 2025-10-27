@@ -95,3 +95,20 @@ App은 프로그램의 시작점이라,
 - [x] 이름 길이 초과(6자 이상) → `[ERROR] 자동차 이름은 5자 이하만 가능합니다.
 - [x] 시도 횟수가 음수 or 0일때 → `[ERROR] 시도 횟수는 1 이상의 숫자여야 합니다.'
 ---
+## 3항 연산자를 쓰지 않아야하는 이유 
+자바스크립트에 3항 연산자가 있는데도 사용을 줄여야하는 이유는 무엇일까?라는 생각이 들었음. 
+
+MDN 문서에 따르면,  if...else를 한 줄로 줄이기 위한 문법적 축약이지,
+여러 조건을 처리하거나 로직 분기를 표현하기 위한 구조가 아님.
+
+특히 삼항 연산자는 오른쪽 결합형(right-associative) 이라
+중첩될 경우 a ? b : (c ? d : e)처럼 해석되어 코드를 읽기 어렵게 만들 수 있음. 
+
+> **출처:**
+> Mozilla Contributors. (2025, July 8). Conditional (ternary) operator.
+> In MDN Web Docs – Expressions and Operators. Mozilla Foundation.
+> Retrieved from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
+
+
+이에 따라 race.js / playRound에서 3항 연산자 제거했음.
+---
